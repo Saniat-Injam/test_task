@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:test_task/features/onboarding/on_boarding_screen.dart';
+import 'package:test_task/features/onboarding/view/onboarding_screen1.dart';
 
 class SplashController extends GetxController {
   @override
@@ -12,6 +12,6 @@ class SplashController extends GetxController {
     await Future.delayed(const Duration(seconds: 3));
     //Get.offAllNamed('/onBoardingScreen');
     //Get.offAllNamed(AppRoute.onBoardingScreen); // safer than hardcoding
-    Get.offAll(() => OnboardingScreen());
+    Get.offAll(() => OnboardingScreen1());
   }
 }
