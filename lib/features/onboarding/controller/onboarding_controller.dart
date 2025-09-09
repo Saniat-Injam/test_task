@@ -27,7 +27,7 @@ class OnboardingController extends GetxController {
       Get.toNamed(AppRoutes.onboarding2);
     } else {
       // Go to home/dashboard after onboarding
-      Get.offAllNamed(AppRoutes.register);
+      Get.offAllNamed(AppRoutes.login);
     }
   }
 }
