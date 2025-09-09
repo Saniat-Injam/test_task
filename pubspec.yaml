@@ -30,8 +30,7 @@ dependencies:
   json_serializable: 
   flutter_spinkit: 
   flutter_svg:
-  device_preview: 
-
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter
