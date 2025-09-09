@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:test_task/core/utils/constants/colors.dart';
+import 'package:test_task/core/utils/constants/icon_path.dart';
+import 'package:test_task/features/auth/views/login_screen.dart';
 
 class OtpSuccessDialog extends StatelessWidget {
   const OtpSuccessDialog({super.key});
@@ -7,26 +11,14 @@ class OtpSuccessDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Dialog(
+      backgroundColor: AppColors.primaryWhite,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       child: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            // Icon or Image
-            Container(
-              padding: const EdgeInsets.all(20),
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                // ignore: deprecated_member_use
-                color: Colors.blue.withOpacity(0.1),
-              ),
-              child: const Icon(
-                Icons.check_circle,
-                color: Colors.blue,
-                size: 50,
-              ),
-            ),
+            SvgPicture.asset(IconPath.checkMulti),
             const SizedBox(height: 20),
 
             const Text(
@@ -43,9 +35,11 @@ class OtpSuccessDialog extends StatelessWidget {
             const SizedBox(height: 20),
 
             ElevatedButton(
-              onPressed: () => Get.back(),
+              onPressed: () {
+                Get.to(() => LoginScreen());
+              },
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.blue,
+                backgroundColor: AppColors.primaryBlue,
                 minimumSize: const Size(double.infinity, 50),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(12),

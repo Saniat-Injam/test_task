@@ -4,4 +4,5 @@ class ImagePath {
   static const String onboarding1 = 'assets/images/onboarding1.png';
   static const String onboarding2 = 'assets/images/onboarding2.png';
   static const String map = 'assets/images/map.png';
+  static const String bulb = 'assets/images/bulb.png';
 }

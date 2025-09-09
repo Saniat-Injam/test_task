@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:test_task/core/utils/constants/colors.dart';
 import 'package:test_task/features/location_language/controller/language_controller.dart';
 
 class LanguageSelectionScreen extends StatelessWidget {
@@ -60,7 +61,7 @@ class LanguageSelectionScreen extends StatelessWidget {
                             borderRadius: BorderRadius.circular(12),
                             border: Border.all(
                               color: isSelected
-                                  ? Colors.blue
+                                  ? AppColors.primaryBlue
                                   : Colors.grey.shade300,
                               width: 1.5,
                             ),
@@ -85,7 +86,7 @@ class LanguageSelectionScreen extends StatelessWidget {
                                     horizontal: 12,
                                   ),
                                   decoration: BoxDecoration(
-                                    color: Colors.blue,
+                                    color: AppColors.primaryBlue,
                                     borderRadius: BorderRadius.circular(20),
                                   ),
                                   child: Text(
@@ -131,7 +132,7 @@ class LanguageSelectionScreen extends StatelessWidget {
                 child: ElevatedButton(
                   onPressed: () => controller.continueNext(),
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.blue,
+                    backgroundColor: AppColors.primaryBlue,
                     padding: EdgeInsets.symmetric(vertical: 16),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(25),

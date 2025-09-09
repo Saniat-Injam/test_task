@@ -36,7 +36,6 @@ class OtpCodeScreen extends StatelessWidget {
               ),
               const SizedBox(height: 30),
 
-              // OTP input fields
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: List.generate(
@@ -44,6 +43,9 @@ class OtpCodeScreen extends StatelessWidget {
                   (index) => SizedBox(
                     width: 60,
                     child: TextField(
+                      controller: controller
+                          .textControllers[index], // <-- bind controller
+                      focusNode: controller.focusNodes[index],
                       maxLength: 1,
                       keyboardType: TextInputType.number,
                       textAlign: TextAlign.center,
@@ -57,67 +59,41 @@ class OtpCodeScreen extends StatelessWidget {
                           borderRadius: BorderRadius.circular(10),
                         ),
                       ),
-                      onChanged: (value) {
-                        if (value.isNotEmpty) {
-                          controller.otp.value += value;
-                          if (controller.otp.value.length == 4) {
-                            controller.onOtpCompleted(controller.otp.value);
-                          }
-                        }
-                      },
+                      onChanged: (value) =>
+                          controller.onOtpChanged(value, index),
                     ),
                   ),
                 ),
               ),
 
-              const SizedBox(height: 20),
-              const Text(
-                "Resend code in 00:48",
-                style: TextStyle(color: Colors.grey),
-              ),
-              const Spacer(),
+              const SizedBox(height: 50),
 
-              // Numeric keypad like in your design (optional)
-              GridView.builder(
-                shrinkWrap: true,
-                itemCount: 12,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 3,
-                  mainAxisSpacing: 10,
-                  crossAxisSpacing: 10,
-                ),
-                itemBuilder: (context, index) {
-                  if (index == 9) return const SizedBox();
-                  if (index == 11) {
-                    return IconButton(
-                      onPressed: () {
-                        if (controller.otp.value.isNotEmpty) {
-                          controller.otp.value = controller.otp.value.substring(
-                            0,
-                            controller.otp.value.length - 1,
-                          );
-                        }
-                      },
-                      icon: const Icon(Icons.backspace_outlined),
-                    );
-                  }
-                  return ElevatedButton(
-                    onPressed: () {
-                      String value = (index == 10) ? "0" : "${index + 1}";
-                      if (controller.otp.value.length < 4) {
-                        controller.otp.value += value;
-                        if (controller.otp.value.length == 4) {
-                          controller.onOtpCompleted(controller.otp.value);
-                        }
-                      }
-                    },
-                    child: Text(
-                      (index == 10) ? "0" : "${index + 1}",
-                      style: const TextStyle(fontSize: 20),
+              Obx(() {
+                int minutes = controller.timer.value ~/ 60;
+                int seconds = controller.timer.value % 60;
+                return Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      controller.timer.value > 0
+                          ? "${minutes.toString().padLeft(2, '0')}:${seconds.toString().padLeft(2, '0')}"
+                          : "Didn't receive code?",
+                      style: const TextStyle(color: Colors.grey),
                     ),
-                  );
-                },
-              ),
+                    SizedBox(width: 10),
+                    SizedBox(
+                      height: 60,
+                      width: 120,
+                      child: ElevatedButton(
+                        onPressed: controller.timer.value == 0
+                            ? controller.resendCode
+                            : null,
+                        child: const Text("Resend Code"),
+                      ),
+                    ),
+                  ],
+                );
+              }),
             ],
           ),
         ),

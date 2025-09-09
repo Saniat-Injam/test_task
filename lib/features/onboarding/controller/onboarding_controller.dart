@@ -14,9 +14,9 @@ class OnboardingController extends GetxController {
       image: ImagePath.onboarding1,
     ),
     OnboardingModel(
-      title: "Learn at your own pace",
+      title: "Explore Your New Skill Today",
       description:
-          "Continue where you left off and track your progress easily.",
+          "Our Platform is designed to help you explore new skills. Let's learn & grow with Eduline!",
       image: ImagePath.onboarding2,
     ),
   ];
